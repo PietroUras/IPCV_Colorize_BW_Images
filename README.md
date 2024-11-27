@@ -22,6 +22,28 @@ The code in this repository builds upon the concepts and techniques described in
 
 3. **benchmark_generator**: This script allows users to run multiple tests and compare the results in one go. It is useful for benchmarking the effect of different techniques (such as denoising or histogram equalization) on the colorization process. It will automatically generate a comparison of results for easy evaluation.
 
+## Using argparse
+
+This project uses argparse to allow you to customize the parameters for the colorization process and apply different image processing techniques. Below are examples of how to run the scripts with various options:
+
+### Basic Colorization for a Single Image:
+
+    python bw2color_single_image.py --image Images/Input/Full_quality_tiff/scan_1.tif --prototxt model/colorization_deploy_v2.prototxt --model Model/colorization_release_v2.caffemodel --points Model/pts_in_hull.npy
+
+### Colorization with Denoising:
+
+    python bw2color_image_folder.py --prototxt model/colorization_deploy_v2.prototxt --model Model/colorization_release_v2.caffemodel --points Model/pts_in_hull.npy --denoise -i Images/Input/Full_quality_png -o Images/Output/Denoise
+
+### Colorization with Histogram Equalization:
+
+    python bw2color_image_folder.py --prototxt model/colorization_deploy_v2.prototxt --model Model/colorization_release_v2.caffemodel --points Model/pts_in_hull.npy --equalizeHist -i Images/Input/Full_quality_png -o Images/Output/Hist_EQ
+
+### Colorization with Grain and Scratch Removal:
+
+    python bw2color_image_folder.py --prototxt model/colorization_deploy_v2.prototxt --model Model/colorization_release_v2.caffemodel --points Model/pts_in_hull.npy --removeGrainAndScratches -i Images/Input/Full_quality_png -o Images/Output/Remove_grain_and_scratches
+
+By using argparse, you can choose different configurations based on the image processing techniques you wish to apply, such as denoising, histogram equalization, or grain removal. Make sure to adjust the paths to your input and output directories accordingly.
+
 ## Model Source
 
 The pre-trained Caffe model used in this project was downloaded from the description of the video ["How to Colorize Black and White Photos in Python"](https://www.youtube.com/watch?v=gAmskBNz_Vc). 

@@ -46,7 +46,9 @@ By using argparse, you can choose different configurations based on the image pr
 
 ## Model Source
 
-The pre-trained Caffe model used in this project was downloaded from the description of the video ["How to Colorize Black and White Photos in Python"](https://www.youtube.com/watch?v=gAmskBNz_Vc). 
+The pre-trained Caffe model used in this project was downloaded from the description of the video ["How to Colorize Black and White Photos in Python"](https://www.youtube.com/watch?v=gAmskBNz_Vc).
+
+You must download the model **[from this drobpox folder](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbDhxN2lTald4cEw0bWJaLUN3bURvTHRfSld3d3xBQ3Jtc0trT3YwblN5NmJyRHNLSHRrX3B2RFhOU1JpQUl5V3p3ejh2dnNoVVJIaU83and0NEFZelVEUE0wV2FjRExrczhORkY4QjRKbWJDX0F3NlFSRm05S05TUklUSmt1dE90UDlGeWJ6TzlXZFpOQjBuUHdWTQ&q=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fdx0qvhhp5hbcx7z%2Fcolorization_release_v2.caffemodel%3Fdl%3D1&v=gAmskBNz_Vc)** to run the network.
 
 Special thanks to the video creator for providing the model and code.
 

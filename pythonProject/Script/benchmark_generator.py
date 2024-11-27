@@ -1,5 +1,5 @@
 import os
-import plot_images
+import save_images
 
 # Before running this script is necessary to run bw2color_image_folder and update
 # properly input_folders and output_path with the correct paths

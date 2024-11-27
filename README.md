@@ -1,5 +1,18 @@
 # IPCV_Colorize_BW_Images
 
+- [IPCV\_Colorize\_BW\_Images](#ipcv_colorize_bw_images)
+  - [Introduction](#introduction)
+  - [Inspiration](#inspiration)
+  - [Scripts Overview](#scripts-overview)
+  - [Using argparse](#using-argparse)
+    - [Basic Colorization for a Single Image:](#basic-colorization-for-a-single-image)
+    - [Colorization with Denoising:](#colorization-with-denoising)
+    - [Colorization with Histogram Equalization:](#colorization-with-histogram-equalization)
+    - [Colorization with Grain and Scratch Removal:](#colorization-with-grain-and-scratch-removal)
+  - [Model Source](#model-source)
+  - [Acknowledgements](#acknowledgements)
+
+
 ## Introduction
 
 This project was developed as part of the "Image Processing and Computer Vision" course at Politecnico di Torino. I chose the topic of black-and-white image colorization to combine my knowledge of OpenCV with a personal goal: colorizing old family photos. 

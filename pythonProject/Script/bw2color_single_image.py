@@ -2,6 +2,7 @@ import numpy as np
 import argparse
 import cv2
 import matplotlib.pyplot as plt
+import input_preprocess
 
 # This script processes a single black-and-white image at a time, applying colorization using a pre-trained neural
 # network model. The script allows additional preprocessing steps such as histogram equalization, denoising,
@@ -42,6 +43,29 @@ net.getLayer(conv8).blobs = [np.full([1, 313], 2.606, dtype="float32")]
 # load the input image from disk, scale the pixel intensities to the range [0, 1], and then convert the image from
 # the BGR to Lab color space
 image = cv2.imread(args["image"])
+
+# save the original image before any pre colorization operation
+original_image = image
+
+# Apply histogram equalization if the flag is set
+if args["equalizeHist"]:
+    print("[INFO] Applying histogram equalization...")
+    original_image = image
+    image = input_preprocess.equalize_bgr_image(image)
+
+# Apply denoising if the flag is set
+if args["denoise"]:
+    print("[INFO] Applying denoising...")
+    original_image = image
+    image = input_preprocess.simple_denoise(image)
+
+# Remove grain and scratches if the flag is set
+if args["removeGrainAndScratches"]:
+    print("[INFO] Removing grain and stretches...")
+    original_image = image
+    image = input_preprocess.remove_grain_and_scratches(image)
+
+# Scale the pixel intensities and convert to Lab color space
 scaled = image.astype("float32") / 255.0
 lab = cv2.cvtColor(scaled, cv2.COLOR_BGR2LAB)
 
@@ -65,15 +89,17 @@ colorized = np.concatenate((L[:, :, np.newaxis], ab), axis=2)
 # convert the output image from the Lab color space to RGB, then clip any values that fall outside the range [0, 1]
 colorized = cv2.cvtColor(colorized, cv2.COLOR_LAB2RGB)
 colorized = np.clip(colorized, 0, 1)
-# the current colorized image is represented as a floating point data type in the range [0, 1] -- let's convert to an unsigned 8-bit integer representation in the range [0, 255]
+
+# the current colorized image is represented as a floating point data type in the range [0, 1] -- let's convert to an
+# unsigned 8-bit integer representation in the range [0, 255]
 colorized = (255 * colorized).astype("uint8")
 
 # convert the input image from the BGR color space to RGB for a correct output during the print
-image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2RGB)
 
 # show the original and output colorized images
 plt.subplot(1, 2, 1).axis('off')
-plt.imshow(image)
+plt.imshow(original_image)
 plt.title("Original")
 
 plt.subplot(1, 2, 2).axis('off')

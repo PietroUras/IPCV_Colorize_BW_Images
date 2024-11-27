@@ -8,7 +8,7 @@ import os
 # images are clear and readable, even for images with large dimensions. Adjusting these parameters might be necessary
 # for different image sizes to maintain consistency and legibility.
 
-def save_input_elaboration(original, edited, filename, output, elaboration):
+def save_input_preprocess(original, edited, filename, output, elaboration):
     """
     Saves an image that contains both original and edited inputs, side by side, with text annotations.
     This is useful for comparing the effects of different image processing techniques.

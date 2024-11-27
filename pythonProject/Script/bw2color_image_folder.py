@@ -2,8 +2,8 @@ import numpy as np
 import argparse
 import cv2
 import os
-import input_elaboration
-import plot_images as plot
+import input_preprocess
+import save_images as save
 from PIL import Image
 
 # Given an input folder containing black and white images, an output folder to save the colorized images,
@@ -63,24 +63,24 @@ for filename in os.listdir(args["input"]):
             output_prefix = "equalized_hist"
             print("[INFO] Applying histogram equalization...")
             original_image = image
-            image = input_elaboration.equalize_bgr_image(image)
-            plot.save_input_elaboration(original_image, image, filename, args["output"], "Histogram equalization")
+            image = input_preprocess.equalize_bgr_image(image)
+            save.save_input_preprocess(original_image, image, filename, args["output"], "Histogram equalization")
 
         # Apply denoising if the flag is set
         if args["denoise"]:
             output_prefix = "denoised"
             print("[INFO] Applying denoising...")
             original_image = image
-            image = input_elaboration.simple_denoise(image)
-            plot.save_input_elaboration(original_image, image, filename, args["output"], "Denoising")
+            image = input_preprocess.simple_denoise(image)
+            save.save_input_preprocess(original_image, image, filename, args["output"], "Denoising")
 
         # Remove grain and scratches if the flag is set
         if args["removeGrainAndScratches"]:
             output_prefix = "removedGrainAndScratches_"
             print("[INFO] Removing grain and stretches...")
             original_image = image
-            image = input_elaboration.remove_grain_and_scratches(image)
-            plot.save_input_elaboration(original_image, image, filename, args["output"],
+            image = input_preprocess.remove_grain_and_scratches(image)
+            save.save_input_preprocess(original_image, image, filename, args["output"],
                                         "Denoising & morphological operations")
 
         # Scale the pixel intensities and convert to Lab color space

@@ -19,7 +19,7 @@ output_path = r"E:\PyCharm\Colorization\pythonProject\Images\Output\Benchmark"
 os.makedirs(output_path, exist_ok=True)
 
 # Read images from all the folders
-images_by_position = plot_images.read_images_from_folders(input_folders)
+images_by_position = save_images.read_images_from_folders(input_folders)
 
 # Concatenate images for each position
-plot_images.concatenate_images(images_by_position, output_path)
+save_images.concatenate_images(images_by_position, output_path)
